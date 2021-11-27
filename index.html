@@ -22,8 +22,18 @@
   <body>
     <div>
       <form>
-        <input name="email" placeholder="example@gmail.com" /> <br /><br />
-        <input name="postcode" placeholder="12-345" /> <br /><br />
+        <input
+          name="email"
+          placeholder="example@gmail.com"
+          pattern="[0-9a-z0-9]+@[a-z0-9]+\.[a-z]{2,4}"
+        />
+        <br /><br />
+        <input
+          name="postcode"
+          placeholder="12-345"
+          pattern="[0-9]{2} - [0-9]{3}"
+        />
+        <br /><br />
         <input name="nip-number" placeholder="1234563218" /> <br /><br />
         <input name="id-number" placeholder="ADJ 800000" /> <br /><br />
         <input name="ipv4-address" placeholder="192.168.1.15" /> <br /><br />
