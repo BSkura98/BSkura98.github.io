@@ -44,14 +44,14 @@
           name="nip-number"
           placeholder="1234563218"
           required
-          type="text"
+          type="number"
         />
         <br /><br />
         <input name="id-number" placeholder="ADJ 800000" required type="text" />
         <br /><br />
         <input name="ipv4-address" placeholder="192.168.1.15" required />
         <br /><br />
-        <input name="web-page" placeholder="website.com" required type="text" />
+        <input name="web-page" placeholder="website.com" required type="url" />
         <br /><br />
         <input
           name="folder-path"
@@ -85,7 +85,8 @@
           name="phone-number"
           placeholder="987123654"
           required
-          type="text"
+          type="tel"
+          pattern="[0-9]{9}"
         />
         <br /><br />
       </form>
