@@ -1,6 +1,5 @@
 input:invalid {
   border-color: red;
-  /* turn to red as long as pattern do not match */
 }
 
 input:valid {
