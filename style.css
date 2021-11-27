@@ -5,3 +5,7 @@ input:invalid {
 input:valid {
   border-color: green;
 }
+
+input {
+  width: 300px;
+}
