@@ -81,7 +81,7 @@
         <input
           name="folder-path"
           placeholder="c:\windows\temp"
-          pattern="[c-zC-Z]:\(windows|winnt|win|dos|msdos)"
+          pattern="[c-zC-Z]:\windows"
           required
           type="text"
         />
@@ -98,6 +98,7 @@
         <input
           name="file-path"
           placeholder="/etc/passwd"
+          pattern="/etc/[a-zA-Z]{1,}"
           required
           type="text"
         />
