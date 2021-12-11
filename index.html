@@ -84,6 +84,7 @@
           placeholder="c:\windows\temp"
           required
           type="text"
+          pattern="[A-z]:\\((msdos|dos|winnt|win|windows))(\\[A-z]+)*"
         />
         <br />
         Ścieżka 2<br />
@@ -137,6 +138,9 @@
       />
       <br />
       Godzina (format 24-godzinny)<br />
+      <input name="time" required type="time" />
+      <br />
+      Godzina (format 12-godzinny)<br />
       <input name="time" required type="time" />
       <br />
       Kolor<br />
