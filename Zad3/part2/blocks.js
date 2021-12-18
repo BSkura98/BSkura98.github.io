@@ -22,33 +22,11 @@ window.onload = () => {
   layer = new Konva.Layer();
 
   stage.add(layer);
-
-  var rectX = stage.width();
-  var rectY = stage.height();
-  floor = new Konva.Rect({
-    x: 0,
-    y: rectY - 50,
-    width: rectX,
-    height: 50,
-    fill: "black",
-    draggable: false,
-  });
-  layer.add(floor);
-  stage.add(layer);
-};
-
-window.onresize = () => {
-  width = window.innerWidth * 0.5;
-  height = window.innerHeight;
-  stage.width(width);
-  stage.height(height);
-  floor.width(width);
-  floor.y(height - 50);
 };
 
 function generateBlock() {
   var rectX = stage.width() / 2 - 50;
-  var rectY = stage.height() / 2 - 25;
+  var rectY = stage.height() - 100;
   var color = getRandomColor();
   var box = new Konva.Rect({
     x: rectX,
@@ -56,8 +34,8 @@ function generateBlock() {
     width: 50,
     height: 50,
     fill: color,
-    stroke: "black",
-    strokeWidth: 4,
+    stroke: "grey",
+    strokeWidth: 1,
     draggable: true,
   });
   box.on("mouseover", function () {
