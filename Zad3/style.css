@@ -1,15 +1,3 @@
 ol .list-item::marker {
   color: rgb(0, 38, 255);
 }
-
-#canvas {
-  display: inline-block;
-  width: 80%;
-  height: 80%;
-  background: rgba(0, 195, 255, 0.192);
-}
-
-#generateBlockButton {
-  display: inline-block;
-  width: 20%;
-}
