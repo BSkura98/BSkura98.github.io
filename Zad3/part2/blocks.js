@@ -10,7 +10,7 @@ function getRandomColor() {
 var width, height, stage, layer;
 boxlist = [];
 window.onload = () => {
-  width = window.innerWidth * 0.5;
+  width = window.innerWidth * 0.8;
   height = window.innerHeight;
 
   stage = new Konva.Stage({
@@ -27,14 +27,23 @@ window.onload = () => {
   var rectY = stage.height();
   floor = new Konva.Rect({
     x: 0,
-    y: rectY - 25,
+    y: rectY - 50,
     width: rectX,
-    height: 25,
+    height: 50,
     fill: "black",
     draggable: false,
   });
   layer.add(floor);
   stage.add(layer);
+};
+
+window.onresize = () => {
+  width = window.innerWidth * 0.5;
+  height = window.innerHeight;
+  stage.width(width);
+  stage.height(height);
+  floor.width(width);
+  floor.y(height - 50);
 };
 
 function generateBlock() {
@@ -57,14 +66,8 @@ function generateBlock() {
   box.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
-  box.on("dragend", function () {
-    //tutaj powinno być sprawdzanie kolizji, ale nie wiem sam jak je zrobic
-  });
 
   layer.add(box);
   boxlist.push(box);
-  console.log(boxlist);
-  console.log(boxlist[0]);
-
   stage.add(layer);
 }
