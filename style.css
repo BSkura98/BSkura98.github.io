@@ -9,3 +9,7 @@ input:valid {
 input {
   width: 300px;
 }
+
+ol .list-item::marker {
+  color: rgb(0, 38, 255);
+}
