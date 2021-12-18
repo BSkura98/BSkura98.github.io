@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h1>Zadanie 2</h1>
+      Data<br />
+      <input name="date" required type="date" />
+      <br />
+      Data (dni pracownicze w obecnym tygodniu)<br />
+      <input
+        name="date"
+        required
+        type="date"
+        min="2021-12-06"
+        max="2021-12-10"
+      />
+      <br />
+      Godzina (format 24-godzinny)<br />
+      <input name="time" required type="time" />
+      <br />
+      Godzina (format 12-godzinny)<br />
+      <input name="time" required type="time" min="1:00" max="12:59" />
+      <br />
+      Kolor<br />
+      <input name="color" required type="color" />
+    </div>
+  </body>
+</html>
