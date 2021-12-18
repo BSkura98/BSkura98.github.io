@@ -27,13 +27,12 @@ window.onload = () => {
 function generateBlock() {
   var rectX = stage.width() / 2 - 50;
   var rectY = stage.height() - 100;
-  var color = getRandomColor();
   var box = new Konva.Rect({
     x: rectX,
     y: rectY,
     width: 50,
     height: 50,
-    fill: color,
+    fill: getRandomColor(),
     stroke: "grey",
     strokeWidth: 1,
     draggable: true,
@@ -44,8 +43,18 @@ function generateBlock() {
   box.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
+  box.on("dragend", function () {});
 
   layer.add(box);
   boxlist.push(box);
   stage.add(layer);
+}
+
+function checkIntersection(box1, box2) {
+  return (
+    box2.x > box1.x + box1.width ||
+    box2.x + box2.width < box1.x ||
+    box2.y > box1.y + box1.height ||
+    box2.y + box2.height < box1.y
+  );
 }
