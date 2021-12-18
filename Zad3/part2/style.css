@@ -1,0 +1,11 @@
+#canvas {
+  display: inline-block;
+  width: 80%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+#generate-block-button {
+  display: inline-block;
+  width: 20%;
+}
