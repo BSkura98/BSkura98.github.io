@@ -41,6 +41,11 @@ function generateBlock() {
     document.body.style.cursor = "pointer";
   });
   box.on("mouseout", function () {
+    boxlist.map((b) => {
+      if (b != box) {
+        console.log(checkIntersection(box.attrs, b.attrs));
+      }
+    });
     document.body.style.cursor = "default";
   });
   box.on("dragend", function () {});
@@ -51,7 +56,7 @@ function generateBlock() {
 }
 
 function checkIntersection(box1, box2) {
-  return (
+  return !(
     box2.x > box1.x + box1.width ||
     box2.x + box2.width < box1.x ||
     box2.y > box1.y + box1.height ||
