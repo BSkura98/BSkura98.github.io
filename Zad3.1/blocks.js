@@ -51,13 +51,15 @@ function generateBlock() {
   box.on("dragend", function (e) {
     boxlist.map((b) => {
       if (b != e.currentTarget) {
-        if (checkIntersection(e.currentTarget.attrs, b.attrs)) {
-          console.log(e.currentTarget);
-          // e.currentTarget.attrs.x = prevX;
-          // e.currentTarget.attrs.y = prevY;
-          e.currentTarget.x(prevX);
-          e.currentTarget.y(prevY);
-          console.log(e.currentTarget.attrs);
+        var moveObjectPosition = newCheckIntersection(
+          e.currentTarget.attrs,
+          b.attrs
+        );
+        if (moveObjectPosition.x !== null) {
+          e.currentTarget.x(moveObjectPosition.x);
+        }
+        if (moveObjectPosition.y !== null) {
+          e.currentTarget.y(moveObjectPosition.y);
         }
       }
     });
@@ -75,4 +77,35 @@ function checkIntersection(box1, box2) {
     box2.y > box1.y + box1.height ||
     box2.y + box2.height < box1.y
   );
+}
+
+function newCheckIntersection(box1, box2) {
+  var moveObjectPosition = {
+    x: null,
+    y: null,
+  };
+
+  if (
+    !(
+      box2.x > box1.x + box1.width ||
+      box2.x + box2.width < box1.x ||
+      box2.y > box1.y + box1.height ||
+      box2.y + box2.height < box1.y
+    )
+  ) {
+    if (!(box2.x > box1.x + box1.width)) {
+      moveObjectPosition.x = box1.x + box2.width;
+    }
+    if (!(box2.x + box2.width < box1.x)) {
+      moveObjectPosition.x = box1.x + box2.width;
+    }
+    if (!(box2.y > box1.y + box1.height)) {
+      moveObjectPosition.y = box1.y + box2.height;
+    }
+    if (!(box2.y + box2.height < box1.y)) {
+      moveObjectPosition.y = box1.y + box2.height;
+    }
+  }
+
+  return moveObjectPosition;
 }
