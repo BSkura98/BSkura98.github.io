@@ -24,6 +24,7 @@ window.onload = () => {
   stage.add(layer);
 };
 
+var previousBoxPosition;
 function generateBlock() {
   var rectX = stage.width() / 2 - 50;
   var rectY = stage.height() - 100;
@@ -41,14 +42,22 @@ function generateBlock() {
     document.body.style.cursor = "pointer";
   });
   box.on("mouseout", function () {
-    boxlist.map((b) => {
-      if (b != box) {
-        console.log(checkIntersection(box.attrs, b.attrs));
-      }
-    });
     document.body.style.cursor = "default";
   });
-  box.on("dragend", function () {});
+  box.on("dragstart", function () {
+    console.log("dragstart");
+    previousBoxPosition = box;
+  });
+  box.on("dragend", function () {
+    console.log("dragend");
+    boxlist.map((b) => {
+      if (b != box) {
+        if (checkIntersection(box.attrs, b.attrs)) {
+          box.attrs = previousBoxPosition.attrs;
+        }
+      }
+    });
+  });
 
   layer.add(box);
   boxlist.push(box);
