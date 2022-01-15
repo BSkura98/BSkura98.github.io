@@ -24,7 +24,7 @@ window.onload = () => {
   stage.add(layer);
 };
 
-var previousBoxPosition;
+var prevX, prexY;
 function generateBlock() {
   var rectX = stage.width() / 2 - 50;
   var rectY = stage.height() - 100;
@@ -46,14 +46,17 @@ function generateBlock() {
   });
   box.on("dragstart", function () {
     console.log("dragstart");
-    previousBoxPosition = box;
+    prevX = box.attrs.x;
+    prevY = box.attrs.y;
   });
-  box.on("dragend", function () {
-    console.log("dragend");
+  box.on("dragend", function (e) {
     boxlist.map((b) => {
-      if (b != box) {
-        if (checkIntersection(box.attrs, b.attrs)) {
-          box.attrs = previousBoxPosition.attrs;
+      if (b != e.currentTarget) {
+        if (checkIntersection(e.currentTarget.attrs, b.attrs)) {
+          console.log(e.currentTarget.attrs);
+          e.currentTarget.attrs.x = prevX;
+          e.currentTarget.attrs.y = prevY;
+          console.log(e.currentTarget.attrs);
         }
       }
     });
