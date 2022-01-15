@@ -45,7 +45,6 @@ function generateBlock() {
     document.body.style.cursor = "default";
   });
   box.on("dragstart", function () {
-    console.log("dragstart");
     prevX = box.attrs.x;
     prevY = box.attrs.y;
   });
@@ -53,9 +52,11 @@ function generateBlock() {
     boxlist.map((b) => {
       if (b != e.currentTarget) {
         if (checkIntersection(e.currentTarget.attrs, b.attrs)) {
-          console.log(e.currentTarget.attrs);
-          e.currentTarget.attrs.x = prevX;
-          e.currentTarget.attrs.y = prevY;
+          console.log(e.currentTarget);
+          // e.currentTarget.attrs.x = prevX;
+          // e.currentTarget.attrs.y = prevY;
+          e.currentTarget.x(prevX);
+          e.currentTarget.y(prevY);
           console.log(e.currentTarget.attrs);
         }
       }
