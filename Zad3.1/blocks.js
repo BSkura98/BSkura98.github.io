@@ -52,13 +52,13 @@ function generateBlock() {
     boxlist.map((b) => {
       if (b != e.currentTarget) {
         var moveObjectPosition = newCheckIntersection(
-          e.currentTarget.attrs,
-          b.attrs
+          b.attrs,
+          e.currentTarget.attrs
         );
-        if (moveObjectPosition.x !== null) {
+        if (moveObjectPosition.x) {
           e.currentTarget.x(moveObjectPosition.x);
         }
-        if (moveObjectPosition.y !== null) {
+        if (moveObjectPosition.y) {
           e.currentTarget.y(moveObjectPosition.y);
         }
       }
@@ -94,16 +94,16 @@ function newCheckIntersection(box1, box2) {
     )
   ) {
     if (!(box2.x > box1.x + box1.width)) {
-      moveObjectPosition.x = box1.x + box2.width;
+      moveObjectPosition.x = box1.x + box1.width;
     }
     if (!(box2.x + box2.width < box1.x)) {
-      moveObjectPosition.x = box1.x + box2.width;
+      moveObjectPosition.x = box1.x - box2.width;
     }
     if (!(box2.y > box1.y + box1.height)) {
-      moveObjectPosition.y = box1.y + box2.height;
+      moveObjectPosition.y = box1.y + box1.height;
     }
     if (!(box2.y + box2.height < box1.y)) {
-      moveObjectPosition.y = box1.y + box2.height;
+      moveObjectPosition.y = box1.y - box2.height;
     }
   }
 
