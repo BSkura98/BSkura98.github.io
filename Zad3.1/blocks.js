@@ -24,7 +24,6 @@ window.onload = () => {
   stage.add(layer);
 };
 
-var prevX, prexY;
 function generateBlock() {
   var rectX = stage.width() / 2 - 50;
   var rectY = stage.height() - 100;
@@ -44,14 +43,10 @@ function generateBlock() {
   box.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
-  box.on("dragstart", function () {
-    prevX = box.attrs.x;
-    prevY = box.attrs.y;
-  });
   box.on("dragend", function (e) {
     boxlist.map((b) => {
       if (b != e.currentTarget) {
-        var moveObjectPosition = newCheckIntersection(
+        var moveObjectPosition = handleIntersection(
           b.attrs,
           e.currentTarget.attrs
         );
@@ -70,16 +65,7 @@ function generateBlock() {
   stage.add(layer);
 }
 
-function checkIntersection(box1, box2) {
-  return !(
-    box2.x > box1.x + box1.width ||
-    box2.x + box2.width < box1.x ||
-    box2.y > box1.y + box1.height ||
-    box2.y + box2.height < box1.y
-  );
-}
-
-function newCheckIntersection(box1, box2) {
+function handleIntersection(box1, box2) {
   var moveObjectPosition = {
     x: null,
     y: null,
@@ -93,17 +79,27 @@ function newCheckIntersection(box1, box2) {
       box2.y + box2.height < box1.y
     )
   ) {
-    if (!(box2.x > box1.x + box1.width)) {
-      moveObjectPosition.x = box1.x + box1.width;
-    }
-    if (!(box2.x + box2.width < box1.x)) {
-      moveObjectPosition.x = box1.x - box2.width;
-    }
-    if (!(box2.y > box1.y + box1.height)) {
-      moveObjectPosition.y = box1.y + box1.height;
-    }
-    if (!(box2.y + box2.height < box1.y)) {
-      moveObjectPosition.y = box1.y - box2.height;
+    var box2CenterX = (box2.x + box2.width) / 2;
+    var box2CenterY = (box2.y + box2.height) / 2;
+
+    var box1CenterX = (box1.x + box1.width) / 2;
+    var box1CenterY = (box1.y + box1.width) / 2;
+
+    var vX = box2CenterX - box1CenterX;
+    var vY = box2CenterY - box1CenterY;
+
+    if (Math.abs(vX / box1.width) > Math.abs(vY / box1.height)) {
+      if (vX < 0) {
+        moveObjectPosition.x = box1.x - box2.width;
+      } else {
+        moveObjectPosition.x = box1.x + box1.width;
+      }
+    } else {
+      if (vY < 0) {
+        moveObjectPosition.y = box1.y - box2.height;
+      } else {
+        moveObjectPosition.y = box1.y + box1.height;
+      }
     }
   }
 
