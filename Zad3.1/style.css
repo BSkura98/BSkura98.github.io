@@ -1,0 +1,12 @@
+#canvas {
+  display: inline-block;
+  height: 80%;
+  border: 1px solid black;
+  background: rgba(0, 174, 255, 0.356);
+}
+
+#generate-block-button {
+  display: inline-block;
+  height: 20%;
+  width: 40rem;
+}
